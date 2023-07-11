@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  debian-xfce:
+    image: "local/debian-xfce-vnc"
+    build:
+      dockerfile: "Dockerfile"
+    ports:
+      - 5901:5901
+      - 6901:6901
+
+    environment:
+      - DEBUG=false
+    command: --wait
