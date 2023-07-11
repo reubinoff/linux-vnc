@@ -54,7 +54,7 @@ RUN apt-get install -y chromium && \
 ### Install xfce UI
 RUN apt-get install -y supervisor xfce4 xfce4-terminal xterm dbus-x11 libdbus-glib-1-2 && \
     apt-get purge -y pm-utils *screensaver*
-ADD ./src/common/xfce/ $HOME/
+ADD ./src/xfce/ $HOME/
 
 
 ############### configure startup ##################
@@ -62,8 +62,8 @@ RUN echo "Install nss-wrapper to be able to execute image as non-root user"
 RUN apt-get install -y libnss-wrapper gettext && \
     echo 'source $STARTUPDIR/generate_container_user' >> $HOME/.bashrc
 
-ADD ./src/common/install/set_user_permission.sh $INST_SCRIPTS/
-ADD ./src/common/scripts $STARTUPDIR
+ADD ./src/install/set_user_permission.sh $INST_SCRIPTS/
+ADD ./src/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 RUN apt-get clean -y
